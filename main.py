@@ -7,7 +7,7 @@ from concurrent import futures
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from moviepy.editor import VideoFileClip, ImageClip, CompositeVideoClip
 
-pool = futures.ThreadPoolExecutor(max_workers=5)
+pool = futures.ThreadPoolExecutor(max_workers=3)
 titleExp = re.compile(r'(.*?) - (.*?) \((.*?)\)')
 
 env = Environment(
@@ -38,7 +38,7 @@ def make_video(file):
     clip3 = ImageClip('output/title.png').set_duration(5)
     final_clip = CompositeVideoClip([clip1,
                                      clip2.set_start(clip1.end - 1).crossfadein(1),
-                                     clip3.set_start(clip1.end - 1 + clip2.end - 1).crossfadein(1)])
+                                     clip3.set_start(clip1.end - 1 + clip2.end - 1).crossfadein(1)]).set_fps(30)
     final_clip.write_videofile(f"output/{fileName}.mp4")
     shutil.move(f'input/{file}',f'completed/{file}')
 
