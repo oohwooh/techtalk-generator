@@ -1,11 +1,9 @@
 import os
 import re
-import shutil
 import subprocess
 from concurrent import futures
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
-from moviepy.editor import VideoFileClip, ImageClip, CompositeVideoClip, concatenate_videoclips
 
 pool = futures.ThreadPoolExecutor(max_workers=1)
 titleExp = re.compile(r'(.*?) - (.*?) \((.*?)\)')
