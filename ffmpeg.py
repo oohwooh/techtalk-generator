@@ -20,7 +20,7 @@ def make_video(file):
     match = titleExp.match(str(file))
     if not match:
         print(f'{file} did not match the regex')
-        raise ()
+        return
     print('')
     projectName = match.group(1)
     students = match.group(2)
